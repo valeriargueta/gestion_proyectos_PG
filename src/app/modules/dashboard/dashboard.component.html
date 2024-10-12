@@ -1,0 +1,99 @@
+<div class="flex flex-col flex-auto w-full">
+  <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+    <!-- Section title -->
+    <div class="w-full mt-12">
+      <div class="text-2xl font-semibold tracking-tight leading-6">
+        Estado de los Proyectos
+      </div>
+      <div class="font-medium tracking-tight text-secondary">
+        Estado actual de los proyectos por cantidad
+      </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="w-full mt-4 flex flex-wrap gap-4 justify-end">
+      <!-- Filtro por Solución -->
+      <div class="">
+        <label class="font-medium mb-2">Solución: </label>
+        <select [(ngModel)]="selectedSolution" class="p-2 border rounded-md">
+          <option value="">Todas</option>
+          <option value="SmartID">SmartID</option>
+          <option value="Dstoken">Dstoken</option>
+          <option value="SmartBanking">SmartBanking</option>
+        </select>
+      </div>
+
+      <!-- Filtro por Estado -->
+      <div>
+        <label class="font-medium mb-2">Estado: </label>
+        <select [(ngModel)]="selectedStatus" class="p-2 border rounded-md">
+          <option value="">Todos</option>
+          <option value="Por iniciar">Por iniciar</option>
+          <option value="En progreso">En progreso</option>
+          <option value="En QA">En QA</option>
+          <option value="Completado">Completado</option>
+          <option value="Detenido">Detenido</option>
+        </select>
+      </div>
+
+      <!-- Botón para aplicar filtros -->
+      <div class="mt-4 sm:mt-0">
+        <button mat-flat-button color="primary" (click)="applyFilters()">
+          <mat-icon
+            [svgIcon]="'heroicons_outline:plus'"
+            style="color: white"
+          ></mat-icon>
+          <span class="ml-2 mr-1" style="color: white">Aplicar Filtros</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Gráficas -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full mt-6 md:mt-8">
+      <!-- Gráfico de pastel para los estados de los proyectos -->
+      <div
+        class="flex flex-col flex-auto bg-card shadow rounded-2xl overflow-hidden p-6 h-96"
+      >
+        <div class="flex items-start justify-between">
+          <div class="text-lg font-medium tracking-tight leading-6 truncate">
+            Estado de los proyectos
+          </div>
+        </div>
+        <div class="flex flex-col flex-auto mt-10 h-full">
+          <apx-chart
+            class="flex flex-auto items-center justify-center w-full h-full"
+            [chart]="chartProjectStatus.chart"
+            [colors]="chartProjectStatus.colors"
+            [labels]="chartProjectStatus.labels"
+            [series]="chartProjectStatus.series"
+            [plotOptions]="chartProjectStatus.plotOptions"
+            [tooltip]="chartProjectStatus.tooltip"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <!-- Gráfico de columnas apiladas para soluciones por cliente -->
+      <div
+        class="flex flex-col flex-auto bg-card shadow rounded-2xl overflow-hidden p-6 h-96"
+      >
+        <div class="flex items-start justify-between">
+          <div class="text-lg font-medium tracking-tight leading-6 truncate">
+            Soluciones por cliente
+          </div>
+        </div>
+        <div class="flex flex-col flex-auto mt-6 h-full">
+          <apx-chart
+            class="flex flex-auto items-center justify-center w-full h-full"
+            [chart]="chartClientSolutions.chart"
+            [colors]="chartClientSolutions.colors"
+            [series]="chartClientSolutions.series"
+            [plotOptions]="chartClientSolutions.plotOptions"
+            [xaxis]="chartClientSolutions.xaxis"
+            [yaxis]="chartClientSolutions.yaxis"
+            [tooltip]="chartClientSolutions.tooltip"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

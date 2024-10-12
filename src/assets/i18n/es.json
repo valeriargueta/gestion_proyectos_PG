@@ -1,0 +1,417 @@
+{
+	"DASHBOARD": {       
+		"CHANNELS": "Canales",
+		"MERCHANTS": "Comercios",
+		"TOTAL": "Total general",
+		"TOOLTIP_TRANSACTIONS_ACTIVE":"Se refiere a la cantidad de transacciones de la semana que aún se encuentran activas",
+		"TOOLTIP_TRANSACTIONS_SUCCESS":"Se refiere a la cantidad de transacciones de la semana que fueron completadas en su totalidad con éxito",
+		"TOOLTIP_TRANSACTIONS_EXPIRED":"Se refiere a la cantidad de transacciones de la semana cuyo tiempo ha expirado",
+		"TOOLTIP_TRANSACTIONS_FAILS":"Se refiere a la cantidad de transacciones de la semana que no pudieron ser completadas",
+		"TRANSACTIONS_BY_WEEK": "Transacciones por semana",
+		"THIS_DAY": "En este día",
+		"YESTERDAY": "En día anterior",
+		"THIS_WEEK": "En esta semana",
+		"TRANSACTIONS_TOTAL_DAY": "Total del día",
+		"TRANSACTIONS": "Transacciones",
+		"DONE": "Realizadas",
+		"APPROVED": "Autorizadas:",
+		"TOTAL_WEEK":"Total semana",
+		"SUCCESS":"Exitosas",
+		"ACTIVE":"Activas",
+		"EXPIRED":"Vencidas",
+		"FAILS":"Fallidas",
+		"TOTAL_SALES_OF_MONTH":"Ventas del mes",
+		"GRAPH_TITTLE_SALES_OF_MONTH":"Ventas del mes actual vs el mes anterior",
+		"AVERAGE_MONTHLY_GROWTH":"Promedio de crecimiento mensual",
+		"CURRENT_MONTH":"Mes actual",
+		"AVERAGE_TOTAL_SALES":"Promedio de ventas del mes actual",
+		"ABBREVIATED_MONTHS":{
+			"JANUARY": "ENE",
+			"FEBRUARY": "FEB",
+			"MARCH": "MAR",
+			"APRIL": "ABR",
+			"MAY": "MAY",
+			"JUNE": "JUN",
+			"JULY": "JUL",
+			"AUGUST": "AGO",
+			"SEPTEMBER": "SEP",
+			"OCTOBER": "OCT",
+			"NOVEMBER": "NOV",
+			"DECEMBER": "DIC"
+		},
+		"ABBREVIATED_DAYS_OF_WEEK":{
+			"SUNDAY": "DOM",
+			"MONDAY": "LUN",
+			"TUESDAY": "MAR",
+			"WEDNESDAY": "MIÉ",
+			"THURSDAY": "JUE",
+			"FRIDAY": "VIE",
+			"SATURDAY": "SÁB"
+		}
+    },
+	"FORMS": {        
+        "ERRORS": {
+            "REQUIRED": "Es requerido",
+            "INVALID_EMAIL": "Correo inválido",
+            "MINIMUM": "Mínimo de {{min}} caracteres",
+			"MAXIMUM": "Máximo de {{max}} caracteres",
+			"PASSWORD_PATTERN": "Contraseña debe tener al menos una mayúscula y dos números",
+            "TWO_DECIMALS": "Solo se permiten dos decimales",
+            "NO_DECIMALS": "No se permiten decimales",
+			"NUMBER": "Carateres inválidos",
+			"MIN_VALUE": "Valor mínimo de ",
+			"NO_MATCH": "Las contraseñas no coinciden"
+		
+        }
+    },
+	"TABLE": {       
+		"FILTER_BY_RANGE": "Filtrar por fecha",
+		"START_DATE_PLACEHOLDER": "Fecha inicio",
+		"END_DATE_PLACEHOLDER": "Fecha fin",
+		"CLEAR_DATES": "Limpiar",
+		"CANCEL": "Cancelar",
+		"APPLY_DATES": "Aplicar",
+		"SEARCH": "Buscar",
+		"SEARCH_BY_NAME": "Ingresa el nombre",
+		"SEARCH_BY_QR_DESCRIPTION": "Ingresa descripción de QR",
+		"EXPORT": "Exportar",
+		"ACTIVE": "ACTIVO",
+		"INACTIVE": "INACTIVO",
+		"SEARCH_NO_DATA": "No hay datos coincidentes",
+		"NO_DATA": "No hay información que mostrar.",
+		"MENU": {
+			"ACTIVATE": "Habilitar",
+			"DEACTIVATE": "Deshabilitar"
+		},
+		"PAGINATOR": {
+			"FIRST_PAGE": "Primera página",
+			"ITEMS_PER_PAGE": "Datos por página:",
+			"LAST_PAGE": "Última página",
+			"NEXT_PAGE": "Página siguiente",
+			"PREVIOUS_PAGE": "Página anterior",
+			"PAGE_ONE_ONE": "Página 1 de 1",
+			"PAGE_N": "Página {{page}} de {{totalPages}}"
+		}
+    },
+	"NAVIGATION": {
+		"HOME": "Inicio",
+		"USER": 
+		{
+			"SIGNED": "Iniciaste sesión como",
+			"PROFILE": "Mi perfil",
+			"SIGN_OUT": "Cerrar sesión"
+		},
+		"ADMIN": 
+		{
+			"TITLE": "Administración",
+			"ITEMS": {       
+				"ROLES": "Roles",
+				"USERS": "Usuarios"
+			}
+		},
+		"PROJECTS": 
+		{
+			"TITLE": "Proyectos",
+			"ITEMS": {       
+				"LIST": "Listado de proyectos"
+			}
+		},
+		"REPORTS": 
+		{
+			"TITLE": "Reportes",
+			"ITEMS": {       
+				"LIST": "Listado de reportes"
+			}
+		}
+	},
+	"ALERTS": {       
+		"INVALID_CREDENTIALS": "Credenciales inválidas",
+		"BLOQUED": "El usuario se encuentra bloqueado temporalmente, comunícate con soporte para realizar la solicitud de desbloqueo",
+		"ERROR": "Ha ocurrido un error, intenta de nuevo más tarde",
+		"SUCCESS_UPDATE_INFO": "Información actualizada exitosamente",
+		"ERROR_UPDATE_PASSWORD": "Ha ocurrido un error al actualizar la contraseña",
+		"SUCCESS_UPDATE_PASSWORD": "Contraseña actualizada exitosamente",
+		"OK": "Aceptar",
+		"CANCEL": "Cancelar",
+		"SUCCESS_TITLE": "Exitoso",
+		"SUCCESS_GENERAL": "Acción realizada exitosamente",
+		"ERROR_TITLE": "Error",
+		"ERROR_GENERAL": "Ha ocurrido un error, intenta de nuevo más tarde",
+		"CONFIRM_TITLE": "Confirmar",
+		"CONFIRM_GENERAL": "¿Estás seguro de confirmar esta acción?",
+		"TOKEN_TITLE": "Token",
+		"TOKEN_GENERAL": "Ingresa un token de Google Authenticator"
+    },
+	"PANELS": {
+		"PERSONAL_INFO": "Información personal",
+		"CHANGE_PASSWORD": "Cambiar contraseña",
+		"BASIC_INFO": "Información general",
+		"DOWNLOAD_QR": "Descargar QR",
+		"TRANSACTIONS_HISTORY": "Historial de transacciones"
+	},
+	"SIGN_IN": {        
+        "TITLE": "Inicio de sesión",
+        "FORM": {
+            "USER": "Usuario",
+            "PASSWORD": "Contraseña",
+            "REMEMBER_ME": "Recuérdame",
+			"SUBMIT": "Iniciar sesión"
+        },
+		"REGISTER": "Registrarse",
+		"NO_ACCOUNT_TITLE": "¿Aún no tienes cuenta?",
+		"NO_ACCOUNT_TEXT": "Regístrate para que puedas registrar tu tienda en línea y empieza a aceptar pagos con tarjeta de crédito.",
+		"FORGOT_PASSWORD": "Olvidé mi contraseña"
+    },
+	"SIGN_UP": {        
+        "TITLE": "Regístrate",
+        "FORM": {
+            "NAME": "Nombres",
+            "LASTNAME": "Apellidos",
+            "PASSWORD": "Contraseña",
+            "ESTABLISHMENT": "Nombre del comercio",
+            "EMAIL": "Correo electrónico",
+            "PHONE": "Número de teléfono",
+			"CATEGORY": "Categoría",
+			"SUBMIT": "Registrarse"
+        },
+		"ALREADY_ACCOUNT": "¿Ya tienes una cuenta?",
+		"SIGN_IN": "Inicia sesión"
+    },
+	"FORGOT_PASSWORD": {        
+        "TITLE": "¿Olvidaste tu contraseña?",
+		"DESCRIPTION": "Ingresa tu correo electrónico para recibir un enlace de recuperación de contraseña",
+        "SEND_EMAIL_ERROR": "Ha ocurrido un error inesperado al enviar correo de recuperación de cuenta, intenta de nuevo más tarde",
+        "SENT_EMAIL": "Correo enviado",
+        "SENT_EMAIL_DESCRIPTION": "Se ha enviado un correo con un enlace para restablecer tu contraseña, por favor revisa tu bandeja de entrada.",
+        "FORM": {
+            "EMAIL": "Correo electrónico",
+			"SUBMIT": "Recuperar contraseña"
+        },
+		"BACK": "Regresar al",
+		"SIGN_IN": "inicio de sesión"
+    },
+	"PROFILE_FORM": {        
+        "FORM": {
+            "NAME": "Nombres",
+            "LASTNAME": "Apellidos",
+            "DPI": "DPI",
+            "PHONE": "Número de teléfono",
+			"SUBMIT": "Actualizar"
+        }
+    },
+	"RESET_PASSWORD_FORM": {  
+		"TITLE": "Restablecer contraseña",
+        "INVALID_TOKEN": "¡Parece que este enlace ya ha vencido!",
+        "INVALID_TOKEN_DESCRIPTION": "Puedes volver a enviar un correo de",
+        "FORGOT_PASSWORD": "recuperación de contraseña",
+        "LOGIN_DESCRIPTION": ", en caso ya tengas tus credenciales puedes ",
+        "LOGIN" : "Iniciar sesión",
+        "PASSWORD_UPDATED": "Contraseña reestablecida",
+        "PASSWORD_UPDATED_DESCRIPTION": "Tu contraseña ha sido reestablecida exitosamente.",
+        "VALIDATE_TOKEN_ERROR": "Ha ocurrido un error inesperado, intenta de nuevo más tarde",
+        "RESET_USER_ERROR": "Ha ocurrido un error inesperado al reestablecer tu contraseña, intenta de nuevo más tarde",
+	    "PATTERN": "Recuerda que la contraseña debe estar compuesta por  un mínimo de 8 caracteres, una letra mayúscula y dos números.",
+		"SYMBOLS": "Símbolos permitidos",
+		"INFO": "Deberás iniciar sesión nuevamente con la nueva contraseña",
+        "FORM": {
+            "NEW_PASSWORD": "Nueva contraseña",
+            "NEW_PASSWORD_CONFIRM": "Confirmar nueva contraseña",
+			"SUBMIT": "Actualizar"
+        }
+    },
+    "ROLES": {        
+        "TITLE": "Roles",
+		"ADD_ROLE": "Agregar rol",
+		"NEW_ROLE": "Nuevo rol",
+		"EDIT_ROLE": "Editar rol",
+		"SUCCESS": "Rol creado exitosamente",
+		"EDIT_SUCCESS": "Rol actualizado exitosamente",
+		"ERROR": "Ha ocurrido un error al crear el rol, intenta de nuevo más tarde",
+		"ACTIVATE_ROLE_TITLE": "Habilitar rol",
+		"DEACTIVATE_ROLE_TITLE": "Deshabilitar rol",
+		"ACTIVATE_ROLE": "Estás seguro de habilitar el rol de ",
+		"DEACTIVATE_ROLE": "Está seguro de deshabilitar el rol de ",
+		"FORM": {
+            "NAME": "Nombre de rol",
+            "PERMISSIONS": "Asignación de Permisos",
+			"CANCEL": "Cancelar",
+			"SUBMIT": "Aceptar"
+        },
+		"TABLE": {
+			"COLUMNS": {
+				"NAME": "Nombre",
+				"USERS": "Usuarios",
+				"STATUS": "Estado",
+				"ACTIONS": "Acciones"
+			},
+			"ACTIONS_MENU": {
+				"EDIT": "Editar",
+				"ACTIVATE": "Habilitar",
+				"DEACTIVATE": "Deshabilitar"
+			}
+        }        
+    },
+	"USERS": {        
+        "TITLE": "Usuarios",
+		"ADD_USER": "Agregar usuario",
+		"NO_ROLE": "Sin rol asignado",
+		"SUCCESS": "Usuario creado exitosamente",
+		"EDIT_SUCCESS": "Usuario actualizado exitosamente",
+		"ERROR": "Ha ocurrido un error al crear el usuario, intenta de nuevo más tarde",
+		"NEW_USER": "Nuevo usuario",
+		"EDIT_USER": "Editar usuario",
+		"ACTIVATE_USER_TITLE": "Habilitar usuario",
+		"DEACTIVATE_USER_TITLE": "Deshabilitar usuario",
+		"ACTIVATE_USER": "Estás seguro de habilitar el usuario de ",
+		"DEACTIVATE_USER": "Estás seguro de deshabilitar el usuario de ",
+		"FORM": {
+            "NAME": "Nombre de usuario",
+			"LASTNAME": "Apellido de usuario",
+            "EMAIL": "Correo electrónico",
+			"ROLE": "Rol",
+			"TIMEZONE": "Zona horaria",
+			"LANGUAGE": "Lenguaje",
+			"CANCEL": "Cancelar",
+			"SUBMIT": "Aceptar"
+        },
+		"TABLE": {
+			"COLUMNS": {
+				"NAME": "Nombre",
+				"ROLE": "Rol",
+				"STATUS": "Estado",
+				"ACTIONS": "Acciones"
+			},
+			"ACTIONS_MENU": {
+				"EDIT": "Editar",
+				"ACTIVATE": "Habilitar",
+				"DEACTIVATE": "Deshabilitar"
+			}
+        }        
+    },
+	"ESTABLISHMENTS": {        
+        "TITLE": "Comercios",
+		"ADD_ESTABLISHMENT": "Agregar comercio",
+		"EDIT_ESTABLISHMENT": "Editar comercio",
+		"EDIT_BUTTON": "Editar",
+		"DOWNLOAD_BUTTON": "Descargar código QR",
+		"INSTRUCTIONS_DOWNLOAD": "Descarga el código QR y pégalo en tu tienda o donde prefieras para que tus clientes lo escaneen y puedan realizar pagos a tu negocio con su tarjeta de crédito o debito.",
+		"TITTLE_INSTRUCTIONS_DOWNLOAD": "Instrucciones:",
+		"ACTIVATE_ESTABLISHMENT_TITLE": "Habilitar comercio",
+		"DEACTIVATE_ESTABLISHMENT_TITLE": "Deshabilitar comercio",
+		"ACTIVATE_ESTABLISHMENT": "Estás seguro de habilitar el comercio de ",
+		"DEACTIVATE_ESTABLISHMENT": "Estás seguro de deshabilitar el comercio de ",
+		"DOWNLOAD_QR": "Descargar",
+		"FORM": {
+			"ID": "Identificador",
+            "NAME": "Nombre de comercio",
+			"ADDRESS": "Dirección",
+			"CITY": "Ciudad",
+			"STATE": "Estado",
+			"POSTAL_CODE": "Código postal",
+			"STATUS": "Activo",
+			"SUBMIT": "Actualizar"
+        },
+		"QR":{
+			"TABLE": {
+				"COLUMNS": {
+					"ID": "Id de pago",
+					"EXTERNAL_REFERENCE": "Referencia externa",
+					"DESCRIPTION": "Descripción",
+					"URL": "Link de descarga"
+				}
+			}  
+		},
+		"TABLE": {
+			"COLUMNS": {
+				"ID": "ID",
+				"NAME": "Nombre",
+				"STATUS": "Estado",
+				"ACTIONS": "Acciones"
+			},
+			"ACTIONS_MENU": {
+				"EDIT": "Editar",
+				"ACTIVATE": "Habilitar",
+				"DEACTIVATE": "Deshabilitar",				
+				"TRANSACTIONS_HISTORY": "Historial de transacciones"
+			}
+        }        
+    },
+	"TRANSACTIONS": { 
+		"CANCEL_TRANSACTION_TITLE": "Anular transacción",
+		"CANCEL_TRANSACTION": "Estás seguro de anular la transacción ",
+		"CANCEL_SUCCESSFULL": "Transacción anulada correctamente",
+		"CANCEL_ERROR": "Ocurrió un error al anular la transacción, intenta de nuevo más tarde",
+		"TABLE": {
+			"COLUMNS": {
+				"ID": "Id",
+				"ORDER": "Código de orden",
+				"TOTAL": "Total",
+				"COMISSION": "Comisión bPay",
+				"TAXES": "Impuestos",
+				"TOTAL_DEPOSIT": "Total a depositar",
+				"CREATED_AT": "Creado",
+				"ACTIONS": "Acciones",
+				"CARD_TYPE": "Tipo de tarjeta",
+				"CARD_LAST_FOUR": "Últimos 4 dígitos",
+				"AUTH_CODE": "Código de autorización",
+				"CARD_ISSUER": "Referencia emisor de tarjeta",
+				"RESPONSE_CODE": "Código de respuesta",
+				"RESPONSE_MESSAGE": "Mensaje de respuesta",
+				"AMOUNT": "Monto",
+				"PROCESSOR": "Procesador"
+			},
+			"ACTIONS_MENU": {
+				"VOID": "Anular",
+				"HOLD": "En Espera"
+			}
+        },
+		"REPORT": {
+			"SUCCESS": "Reporte descargado exitosamente",
+			"ERROR": "El reporte solicitado ya ha sido descargado y no está disponible.",
+			"ERROR_DOWNLOAD": "Si necesitas acceder a el nuevamente, por favor, intenta generarlo nuevamente.",
+			"SEND_EMAIL": "Se ha enviado un correo con un enlace para descargar el reporte, por favor revisa tu bandeja de entrada."
+		}        
+    },
+	"TOKEN": {
+        "NEW": {
+            "TITLE": "Configuración de 2FA",
+            "DESCRIPTION": "Es necesario realizar la configuración de un segundo factor de autenticación para poder ingresar",
+            "TOKEN": "Token",
+            "STEPS" :{
+                "1": {
+                    "TITLE" : "Paso 1:",
+                    "DESCRIPTION" : "Descarga el app de Google Authenticator en tu dispositivo móvil",
+                    "LINK": "Puedes descargarla aquí:",
+                    "OTHERS": "*También puedes utilzar otras apps de Authenticator"
+                },
+                "2": {
+                    "TITLE" : "Paso 2:",
+                    "DESCRIPTION" : "Escanea el siguiente código QR desde la aplicación de Google Authenticator"
+                },
+                "3": {
+                    "TITLE" : "Paso 3:",
+                    "DESCRIPTION" : "Ingresa el código que se muestra en la aplicación",
+                    "LABEL": "Código"
+                }
+            },
+            "NEXT" : "Siguiente",
+            "PREV" : "Anterior",
+            "OK" : "Finalizar",
+            "MESSAGES" : {
+                "BAD_TOKEN": "El código de autenticación es incorrecto",
+                "UNKNOWN": "Ha ocurrido un error al realizar la validación del código",
+                "SUCCESS": "Segundo factor de autenticación configurado exitosamente"
+            }
+        },
+        "VALIDATE": {
+            "TITLE": "Ingrese el código de su aplicación de Authenticator",
+            "OK" : "Confirmar",
+            "LABEL" : "Código",
+            "MESSAGES" : {
+                "BAD_TOKEN": "El código de autenticación es incorrecto",
+                "BAD_TOKEN_REPEATED": "Si tienes problemas con tu segundo factor de autenticación, contacta con soporte",
+                "UNKNOWN": "Ha ocurrido un error al realizar la validación del código"
+            }
+        }
+    }
+}

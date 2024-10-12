@@ -1,0 +1,37 @@
+@switch(view)
+{
+    <!-- Columns -->
+    @case (1) {
+        <div class="flex flex-row mt-3">
+            @for(data of dataDefault; track data){
+                <p class="text-left p-2"><strong >{{ data.name | transloco }} </strong></p>
+                <span class="flex flex-auto"></span>
+                <p class="text-left p-2 break-words">{{data.value}}</p>
+            }
+        </div>
+    }
+    <!-- Form -->
+    @case (2) {
+        <div class="flex flex-col gap-2">
+            @for(field of dataDefault; track field){
+                @if(field.type === TypeFields.Text)
+                {
+                    <mat-form-field class="w-full" color="primary">
+                        <mat-label>{{ field.name | transloco }}</mat-label>
+                        @if(field.icon) {
+                            <mat-icon class="icon-size-5" [svgIcon]="field.icon" matPrefix></mat-icon>
+                        }
+                        <input class="text-gray-800" disabled matInput autocomplete="off" value="{{field.value}}"/>
+                    </mat-form-field>
+                } @else if(field.type === TypeFields.Checkbox)
+                {
+                    <div class="flex flex-wrap items-start mt-2">
+                        <mat-checkbox type="checkbox" disabled [checked]="field.value">
+                            <span class="text-gray-600">{{ field.name | transloco }}</span>
+                        </mat-checkbox>
+                    </div>
+                }
+            }
+        </div>
+    }
+}

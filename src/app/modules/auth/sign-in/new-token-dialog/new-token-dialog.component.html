@@ -1,0 +1,160 @@
+<div class="relative">
+  <h1 mat-dialog-title style="margin: 0 0 12px">
+    {{ "TOKEN.NEW.TITLE" | transloco }}
+  </h1>
+  <div
+    mat-dialog-content
+    class="relative py-0 px-5"
+    style="height: calc(100% - 90px)"
+  >
+    <div *ngIf="step == 1">
+      <!-- <img width="25" height="25" align="center" src="assets/images/authenticator/authenticator-logo.jpg"/> -->
+
+      <p>{{ "TOKEN.NEW.DESCRIPTION" | transloco }}</p>
+
+      <p>
+        <b>{{ "TOKEN.NEW.STEPS.1.TITLE" | transloco }}</b>
+        {{ "TOKEN.NEW.STEPS.1.DESCRIPTION" | transloco }}
+      </p>
+
+      <br />
+
+      <p style="text-align: center; margin: 0px 0px 12px">
+        <b>{{ "TOKEN.NEW.STEPS.1.LINK" | transloco }}</b>
+      </p>
+
+      <div class="flex flex-row" fxLayout="row">
+        <div class="flex-auto max-w-[15%]" fxFlex="15"></div>
+        <div class="flex-auto max-w-[35%] text-center" fxFlex="35">
+          <a href="http://onelink.to/642j7a" target="_blank">
+            <img
+              width="150"
+              height="150"
+              align="center"
+              src="assets/images/authenticator/authenticator-link.png"
+            />
+          </a>
+        </div>
+        <div class="flex-auto max-w-[35%] pt-6" fxFlex="35">
+          <a href="http://onelink.to/642j7a" target="_blank">
+            <img
+              width="150"
+              height="150"
+              align="center"
+              src="assets/images/authenticator/getit-icon.png"
+            />
+          </a>
+        </div>
+      </div>
+
+      <p style="text-align: center">
+        {{ "TOKEN.NEW.STEPS.1.OTHERS" | transloco }}
+      </p>
+    </div>
+
+    <div *ngIf="step == 2">
+      <p>
+        <b>{{ "TOKEN.NEW.STEPS.2.TITLE" | transloco }}</b>
+        {{ "TOKEN.NEW.STEPS.2.DESCRIPTION" | transloco }}
+      </p>
+
+      <div class="flex flex-row" fxLayout="row">
+        <div
+          class="flex-auto max-w-[100%]"
+          fxFlex="100"
+          style="text-align: center"
+        >
+          <div style="margin: auto; width: 200px">
+            <qrcode
+              class="ml-0 mr-0"
+              [qrdata]="getQRLink()"
+              [allowEmptyString]="false"
+              [cssClass]="'center'"
+              [colorDark]="'#000000ff'"
+              [colorLight]="'#ffffffff'"
+              [elementType]="'canvas'"
+              [errorCorrectionLevel]="'M'"
+              [margin]="auto"
+              [scale]="1"
+              [width]="200"
+            ></qrcode>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="step == 3">
+      <p>
+        <b>{{ "TOKEN.NEW.STEPS.3.TITLE" | transloco }}</b>
+        {{ "TOKEN.NEW.STEPS.3.DESCRIPTION" | transloco }}
+      </p>
+
+      <div class="flex flex-row" fxLayout="row" class="my-12">
+        <div class="flex-auto max-w-[100%] text-center" fxFlex="100">
+          <mat-form-field appearance="fill" class="w-1/2">
+            <mat-label>{{ "TOKEN.NEW.STEPS.3.LABEL" | transloco }}</mat-label>
+            <input
+              matInput
+              (keydown.enter)="validateToken()"
+              [formControl]="tokenControl"
+              type="string"
+              style="font-size: 29px; text-align: center"
+            />
+            <mat-error *ngIf="tokenControl.errors?.maxlength" class="text-xs">
+              {{
+                "FORMS.ERRORS.MAXIMUM"
+                  | transloco
+                    : {
+                        max: 6
+                      }
+              }}
+            </mat-error>
+            <mat-error *ngIf="tokenControl.errors?.minlength" class="text-xs">
+              {{
+                "FORMS.ERRORS.MINIMUM"
+                  | transloco
+                    : {
+                        min: 6
+                      }
+              }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute w-full h-full top-0 left-0" *ngIf="loading">
+      <div class="w-full absolute h-full bg-white opacity-50"></div>
+      <div class="w-full mt-36 mr-auto">
+        <mat-spinner mode="indeterminate" color="accent"></mat-spinner>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions style="float: right">
+    <button
+      mat-button
+      (click)="step = step - 1"
+      cdkFocusInitial
+      *ngIf="step > 1"
+    >
+      {{ "TOKEN.NEW.PREV" | transloco }}
+    </button>
+    <button
+      mat-button
+      (click)="step = step + 1"
+      cdkFocusInitial
+      *ngIf="step < 3"
+    >
+      {{ "TOKEN.NEW.NEXT" | transloco }}
+    </button>
+    <button
+      mat-button
+      (click)="validateToken()"
+      *ngIf="step == 3"
+      [disabled]="!tokenControl.valid"
+      cdkFocusInitial
+    >
+      {{ "TOKEN.NEW.OK" | transloco }}
+    </button>
+  </div>
+</div>

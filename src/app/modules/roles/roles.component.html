@@ -1,0 +1,33 @@
+<div class="flex flex-col flex-auto">
+  <!-- Header -->
+  <div
+    class="flex flex-row sm:flex-row items-start sm:items-center sm:justify-between p-6 sm:py-12 md:px-8 border-b bg-card dark:bg-transparent"
+  >
+    <!-- Title -->
+    <div>
+      <div class="text-4xl font-extrabold tracking-tight leading-none">
+        {{ "ROLES.TITLE" | transloco }}
+      </div>
+    </div>
+    <!-- Actions -->
+    <div class="mt-4 sm:mt-0">
+      <!-- Add role -->
+       @if (canCreateRole) {<button mat-flat-button color="primary" [routerLink]="['/roles/add']">
+        <mat-icon [svgIcon]="'heroicons_outline:plus'" style="color: white;"></mat-icon>
+        <span class="ml-2 mr-1" style="color: white;">{{ "ROLES.ADD_ROLE" | transloco }}</span>
+      </button>
+      }
+    </div>
+  </div>
+  <div class="mt-6 mx-10 bg-card rounded-2xl shadow">
+    <app-data-table
+      [showSearch]="false"
+      [tableType]="table"
+      [showActions]="true"
+      [pageSizeOptions]="[10, 25, 50]"
+      [pageSize]="10"
+      (action)="activateDeactivateRole($event)"
+      (editAction)="editRole($event)"
+    ></app-data-table>
+  </div>
+</div>

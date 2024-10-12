@@ -1,0 +1,409 @@
+{
+	"DASHBOARD": {       
+		"TRANSACTIONS": "Transactions",
+		"DONE": "Done",
+		"APPROVED": "Approved:",
+		"CHANNELS": "Channels",
+		"MERCHANTS": "Merchants",
+		"TOOLTIP_TRANSACTIONS_ACTIVE":"It refers to the number of transactions from the week that are still active.",
+		"TOOLTIP_TRANSACTIONS_SUCCESS":"It refers to the number of transactions from the week that were completed successfully in their entirety.",
+		"TOOLTIP_TRANSACTIONS_EXPIRED":"It refers to the number of transactions from the week whose time has expired.",
+		"TOOLTIP_TRANSACTIONS_FAILS":"It refers to the number of transactions from the week that could not be completed.",
+		"TOTAL": "Grand total",
+		"TRANSACTIONS_BY_WEEK": "Transactions per week",
+		"THIS_DAY": "In this day",
+		"YESTERDAY": "Yesterday",
+		"THIS_WEEK": "In this week",
+		"TRANSACTIONS_TOTAL_DAY": "Total for the day",
+		"TOTAL_WEEK":"Total week",
+		"SUCCESS":"Successful",
+		"ACTIVE":"Active",
+		"EXPIRED":"Expired ",
+		"FAILS":"Failed",
+		"TOTAL_SALES_OF_MONTH":"Sales of the month",
+		"AVERAGE_MONTHLY_GROWTH":"Average monthly growth",
+		"CURRENT_MONTH":"Current Month",
+		"GRAPH_TITTLE_SALES_OF_MONTH":"Sales of the current month vs the previous month",
+		"AVERAGE_TOTAL_SALES":"Average total sales",
+		"ABBREVIATED_MONTHS":{
+			"JANUARY": "Jan",
+			"FEBRUARY": "FEB",
+			"MARCH": "MAR",
+			"APRIL": "APR",
+			"MAY": "MAY",
+			"JUNE": "JUN",
+			"JULY": "JUL",
+			"AUGUST": "AUG",
+			"SEPTEMBER": "SEP",
+			"OCTOBER": "OCT",
+			"NOVEMBER": "NOV",
+			"DECEMBER": "DEC"
+		},
+		"ABBREVIATED_DAYS_OF_WEEK":{
+			"SUNDAY": "SUN",
+			"MONDAY": "MON",
+			"TUESDAY": "TUE",
+			"WEDNESDAY": "WED",
+			"THURSDAY": "THU",
+			"FRIDAY": "FRI",
+			"SATURDAY": "SAT"
+		}
+    },
+	"FORMS": {        
+        "ERRORS": {
+            "REQUIRED": "is required",
+            "INVALID_EMAIL": "Invalid email",
+            "MINIMUM": "Minimum of {{min}} characters",
+			"MAXIMUM": "Maximum of{{max}} characters",
+			"PASSWORD_PATTERN": "Password must have at least one capital letter and two numbers",
+            "TWO_DECIMALS": "Only two decimals are allowed",
+            "NO_DECIMALS": "Decimals are not allowed",
+			"NUMBER": "Invalid characters",
+			"MIN_VALUE": "Minimum value of ",
+			"NO_MATCH": "Passwords do not match"
+        }
+    },
+	"TABLE": {       
+		"FILTER_BY_RANGE": "Filter by range",
+		"START_DATE_PLACEHOLDER": "Start date",
+		"END_DATE_PLACEHOLDER": "End date",
+		"CLEAR_DATES": "Clear",
+		"CANCEL": "Cancel",
+		"APPLY_DATES": "Apply",
+		"SEARCH": "Search",
+		"EXPORT": "Export",
+		"ACTIVE": "ACTIVE",
+		"INACTIVE": "INACTIVE",
+		"SEARCH_NO_DATA": "No matching data",
+		"NO_DATA": "No data to display.",
+		"MENU": {
+			"ACTIVATE": "Enable",
+			"DEACTIVATE": "Disable"
+		},
+		"PAGINATOR": {
+			"FIRST_PAGE": "First page",
+			"ITEMS_PER_PAGE": "Items per page:",
+			"LAST_PAGE": "Last page",
+			"NEXT_PAGE": "Next page",
+			"PREVIOUS_PAGE": "Previous page",
+			"PAGE_ONE_ONE": "Page 1 of 1",
+			"PAGE_N": "Page {{page}} of {{totalPages}}"
+		}
+    },
+	"NAVIGATION": {
+		"HOME": "Dashboard",
+		"USER": 
+		{
+			"SIGNED": "Signed in as ",
+			"PROFILE": "Profile",
+			"SIGN_OUT": "Sign out"
+		},
+		"ADMIN": 
+		{
+			"TITLE": "Administration",
+			"ITEMS": {       
+				"ROLES": "Roles",
+				"USERS": "Users"
+			}
+		},
+		"ESTABLISHMENTS": 
+		{
+			"TITLE": "Establishments",
+			"ITEMS": {       
+				"LIST": "List"
+			}
+		}
+	},
+	"ALERTS": {       
+		"INVALID_CREDENTIALS": "Invalid credentials",
+		"BLOQUED": "The user is temporarily blocked, please contact support to request an unblocking.",
+		"ERROR": "An error occurred, please try again later.",
+		"SUCCESS_UPDATE_INFO": "Information successfully updated",
+		"ERROR_UPDATE_PASSWORD": "An error has occurred while updating the password",
+		"SUCCESS_UPDATE_PASSWORD": "Password updated successfully",
+		"OK": "OK",
+		"CANCEL": "Cancel",
+		"SUCCESS_TITLE": "Success",
+		"SUCCESS_GENERAL": "Successfully updated",
+		"ERROR_TITLE": "Error",
+		"ERROR_GENERAL": "An error has occurred",
+		"CONFIRM_TITLE": "Confirm",
+		"CONFIRM_GENERAL": "Are you sure to confirm this action?",
+		"TOKEN_TITLE": "Token",
+		"TOKEN_GENERAL": "Enter a Google Authenticator token"
+    },
+	"PANELS": {
+		"PERSONAL_INFO": "Personal information",
+		"CHANGE_PASSWORD": "Change password",
+		"BASIC_INFO": "General information",
+		"DOWNLOAD_QR": "Download QR",
+		"TRANSACTIONS_HISTORY": "Transactions history"
+	},
+	"SIGN_IN": {        
+        "TITLE": "Sign in",
+        "FORM": {
+            "USER": "User",
+            "PASSWORD": "Password",
+            "REMEMBER_ME": "Remember me",
+			"SUBMIT": "Sign in"
+        },
+		"REGISTER": "Register",
+		"NO_ACCOUNT_TITLE": "Don't have an account yet?",
+		"NO_ACCOUNT_TEXT": "Sign up so you can register your online store and start accepting credit card payments.",
+		"FORGOT_PASSWORD": "Forgot password"
+    },
+	"SIGN_UP": {        
+        "TITLE": "Register",
+        "FORM": {
+            "NAME": "Names",
+            "LASTNAME": "Lastnames",
+            "PASSWORD": "Password",
+            "ESTABLISHMENT": "Establishment name",
+            "EMAIL": "Email",
+            "PHONE": "Phone number",
+			"CATEGORY": "Category",
+			"SUBMIT": "Sign up"
+        },
+		"ALREADY_ACCOUNT": "Do you already have an account?",
+		"SIGN_IN": "Sign in"
+    },
+	"FORGOT_PASSWORD": {        
+        "TITLE": "Forgot password",
+		"DESCRIPTION": "Enter your email address to receive a password recovery link.",
+        "SEND_EMAIL_ERROR": "An error occurred, please try again later",
+        "SENT_EMAIL": "Email sent",
+        "SENT_EMAIL_DESCRIPTION": "An email has been sent with a link to reset your password, please check your inbox.",
+        
+        "FORM": {
+            "EMAIL": "Email",
+			"SUBMIT": "Recover password"
+        },
+		"BACK": "Back to",
+		"SIGN_IN": "Log in"
+    },
+	"PROFILE_FORM": {        
+        "FORM": {
+            "NAME": "Names",
+            "LASTNAME": "Lastnames",
+            "DPI": "DPI",
+            "PHONE": "Phone number",
+			"SUBMIT": "Update"
+        }
+    },
+	"RESET_PASSWORD_FORM": {  
+	    "PATTERN": "The password must be made up of a minimum of 8 characters, a capital letter and two numbers.",
+		"SYMBOLS": "Allowed symbols",
+		"INFO": "You must log in again with the new password",
+		"TITLE": "Restore password",
+        "INVALID_TOKEN": "This link has already expired!",
+        "INVALID_TOKEN_DESCRIPTION": "You can resend an email from",
+        "FORGOT_PASSWORD": "Password recovery",
+        "LOGIN_DESCRIPTION": ", in case you already have your credentials you can ",
+        "LOGIN" : "Login",
+        "PASSWORD_UPDATED": "Password updated",
+        "PASSWORD_UPDATED_DESCRIPTION": "Your password has been successfully updated.",
+        "VALIDATE_TOKEN_ERROR": "An error occurred, please try again later",
+        "RESET_USER_ERROR": "An error occurred, please try again later",
+        "FORM": {
+            "NEW_PASSWORD": "New password",
+            "NEW_PASSWORD_CONFIRM": "Confirm new password",
+			"SUBMIT": "Update"
+        }
+    },
+    "ROLES": {        
+        "TITLE": "Roles",
+		"ADD_ROLE": "Add role",
+		"NEW_ROLE": "New role",
+		"EDIT_ROLE": "Edit role",
+		"SUCCESS": "Role created successfully",
+		"EDIT_SUCCESS": "Rol modified successfully",
+		"ERROR": "An error has occurred while creating the role",
+		"ACTIVATE_ROLE_TITLE": "Enable role",
+		"DEACTIVATE_ROLE_TITLE": "Disable role",
+		"ACTIVATE_ROLE": "Are you sure to enable the role ",
+		"DEACTIVATE_ROLE": "Are you sure to disable the role ",
+		"FORM": {
+            "NAME": "Role name",
+            "PERMISSIONS": "Permit Assignment",
+			"CANCEL": "Cancel",
+			"SUBMIT": "OK"
+        },
+		"TABLE": {
+			"COLUMNS": {
+				"NAME": "Name",
+				"USERS": "Users",
+				"STATUS": "Status",
+				"ACTIONS": "Actions"
+			},
+			"ACTIONS_MENU": {
+				"EDIT": "Edit",
+				"ACTIVATE": "Enable",
+				"DEACTIVATE": "Disable"
+			}
+        }        
+    },
+	"USERS": {        
+        "TITLE": "Users",
+		"ADD_USER": "Add user",
+		"EDIT_USER": "Edit user",
+		"NO_ROLE": "No role assigned",
+		"SUCCESS": "User created successfully",
+		"EDIT_SUCCESS": "User edited successfully",
+		"ERROR": "An error has occurred while creating the user",
+		"NEW_USER": "New user",
+		"ACTIVATE_USER_TITLE": "Enable user",
+		"DEACTIVATE_USER_TITLE": "Disable user",
+		"ACTIVATE_USER": "Are you sure to enable the user ",
+		"DEACTIVATE_USER": "Are you sure to disable the user ",
+		"FORM": {
+            "NAME": "User name",
+			"LASTNAME": "User lastname",
+            "EMAIL": "Email",
+			"ROLE": "Role",
+			"TIMEZONE": "Time zone",
+			"LANGUAGE": "Language",
+			"CANCEL": "Cancel",
+			"SUBMIT": "OK"
+        },
+		"TABLE": {
+			"COLUMNS": {
+				"NAME": "Name",
+				"ROLE": "Role",
+				"STATUS": "Status",
+				"ACTIONS": "Actions"
+			},
+			"ACTIONS_MENU": {
+				"EDIT": "Edit",
+				"ACTIVATE": "Enable",
+				"DEACTIVATE": "Disable"
+			}
+        }        
+    },
+	"ESTABLISHMENTS": {        
+        "TITLE": "Establishments",
+		"ADD_ESTABLISHMENT": "Add establishment",
+		"EDIT_ESTABLISHMENT": "Edit establishment",
+		"EDIT_BUTTON": "Edit",
+		"DOWNLOAD_BUTTON": "Download QR code",
+		"INSTRUCTIONS_DOWNLOAD": "Download the QR code and paste it in your store or wherever you prefer so your customers can scan it and make payments to your business with their credit or debit card.",
+		"TITTLE_INSTRUCTIONS_DOWNLOAD": "Instructions:",
+		"ACTIVATE_ESTABLISHMENT_TITLE": "Enable establishment",
+		"DEACTIVATE_ESTABLISHMENT_TITLE": "Disable establishment",
+		"ACTIVATE_ESTABLISHMENT": "Are you sure to enable the establishment ",
+		"DEACTIVATE_ESTABLISHMENT": "Are you sure to disable the establishment ",
+		"DOWNLOAD_QR": "Download",
+		"FORM": {
+			"ID": "ID",
+			"NAME": "Establishment name",
+			"ADDRESS": "Address",
+			"CITY": "City",
+			"STATE": "State or Province",
+			"POSTAL_CODE": "Postal Code",
+			"STATUS": "Active",
+			"SUBMIT": "Update"
+        },
+		"QR":{
+			"TABLE": {
+				"COLUMNS": {
+					"ID": "Payment id",
+					"EXTERNAL_REFERENCE": "External reference",
+					"DESCRIPTION": "Description",
+					"URL": "Download link"
+				}
+			}  
+		},
+		"TABLE": {
+			"COLUMNS": {
+				"ID": "ID",
+				"LOGO": "Logo",
+				"NAME": "Name",
+				"STATUS": "Status",
+				"ACTIONS": "Actions"
+			},
+			"ACTIONS_MENU": {
+				"EDIT": "Edit",
+				"ACTIVATE": "Enable",
+				"DEACTIVATE": "Disable",				
+				"TRANSACTIONS_HISTORY": "Transactions history"
+			}
+        }        
+    },
+	"TRANSACTIONS": {  
+		"CANCEL_TRANSACTION_TITLE": "Cancel transaction",
+		"CANCEL_TRANSACTION": "Are you sure to cancel the transaction ",
+		"CANCEL_SUCCESSFULL": "The transactions has been canceled",
+		"CANCEL_ERROR": "An error has occurred while canceling the transaction",	
+		"TABLE": {
+			"COLUMNS": {
+				"ID": "Id",
+				"ORDER": "Order code",
+				"TOTAL": "Total",
+				"COMISSION": "bPay Comission",
+				"TAXES": "Taxes",
+				"TOTAL_DEPOSIT": "Deposit total",
+				"CREATED_AT": "Created at",
+				"ACTIONS": "Actions",
+				"CARD_TYPE": "Card type",
+				"CARD_LAST_FOUR": "Card last 4 digits",
+				"AUTH_CODE": "Authorization code",
+				"CARD_ISSUER": "Card issuer reference",
+				"RESPONSE_CODE": "Response code",
+				"RESPONSE_MESSAGE": "Response message",
+				"AMOUNT": "Amount",
+				"PROCESSOR": "Processor"
+			},
+			"ACTIONS_MENU": {
+				"VOID": "Cancel",
+				"HOLD": "On hold"
+			}
+        },
+		"REPORT": {
+			"SUCCESS": "Report download successfully",
+			"ERROR": "The report has already been downloaded and is no longer available.",
+			"ERROR_DOWNLOAD": "If you need to access it, please try to generate it again.",
+			"SEND_EMAIL": "An email has been sent with a link to download the report, please check your inbox."
+		}         
+    },
+	"TOKEN": {
+        "NEW": {
+            "TITLE": "Configuración de 2FA",
+            "DESCRIPTION": "Es necesario realizar la configuración de su segundo factor de autenticación para poder ingresar",
+            "TOKEN": "Token",
+            "STEPS" :{
+                "1": {
+                    "TITLE" : "Paso 1:",
+                    "DESCRIPTION" : "Descarga el app de Google Authenticator en tu dispositivo móvil",
+                    "LINK": "Puedes descargarla aquí:",
+                    "OTHERS": "*También puedes utilzar otras apps de Authenticator"
+                },
+                "2": {
+                    "TITLE" : "Paso 2:",
+                    "DESCRIPTION" : "Escanea el siguiente código QR desde la aplicación de Google Authenticator"
+                },
+                "3": {
+                    "TITLE" : "Paso 3:",
+                    "DESCRIPTION" : "Ingresa el código que se muestra en la aplicación",
+                    "LABEL": "Código"
+                }
+            },
+            "NEXT" : "Siguiente",
+            "PREV" : "Anterior",
+            "OK" : "Finalizar",
+            "MESSAGES" : {
+                "BAD_TOKEN": "El código de autenticación es incorrecto",
+                "UNKNOWN": "Ha ocurrido un error al realizar la validación del código",
+                "SUCCESS": "Segundo factor de autenticación configurado exitosamente"
+            }
+        },
+        "VALIDATE": {
+            "TITLE": "Ingrese el código de su aplicación de Authenticator",
+            "OK" : "Confirmar",
+            "LABEL" : "Código",
+            "MESSAGES" : {
+                "BAD_TOKEN": "El código de autenticación es incorrecto",
+                "BAD_TOKEN_REPEATED": "Si tienes problemas con tu segundo factor de autenticación, contacta con soporte",
+                "UNKNOWN": "Ha ocurrido un error al realizar la validación del código"
+            }
+        }
+    }
+}

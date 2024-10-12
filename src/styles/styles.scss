@@ -1,0 +1,55 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+:root{
+    --fuse-primary-400-rgb: 11,226,165;
+    --mat-option-selected-state-label-text-color: #c95e5e;
+}
+
+// remove icon password reveal 
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+.text-green-1 {
+    color: #B5D39E;
+}
+
+.text-green-2 {
+    color: #0BBDE2;
+}
+
+.text-green-3 {
+    color: #76B193;
+}
+
+.text-green-4 {
+    color: #707C56;
+}
+
+.bg-bpay {
+    background-color: #F5F5F5;
+}
+
+.bg-dark-green
+{
+    background-color: #97884A !important;
+}
+.bg-dark-brown
+{
+    background-color: #988A47 !important;
+}
+
+#login {
+    width: 100%;
+    overflow: hidden; 
+}
+
+#login #login-intro {
+    padding: 128px;
+    color: #c1c1c1;
+    background: url("../assets/images/background.jpg") no-repeat;
+    background-size: auto 100%;
+}

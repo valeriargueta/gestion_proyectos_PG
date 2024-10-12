@@ -1,0 +1,14 @@
+<div class="flex flex-col flex-auto">
+    <!-- Header -->
+    <div class="flex flex-row sm:flex-row items-start sm:items-center sm:justify-between p-6 sm:py-12 md:px-8 border-b bg-card dark:bg-transparent">
+        <!-- Title -->
+        <div>
+            <div class="text-4xl font-extrabold tracking-tight leading-none">{{ 'USERS.NEW_USER' | transloco }}</div>
+        </div>
+    </div>
+    <div class="mt-6 mx-10 bg-card rounded-2xl shadow p-4">  
+        <div class="p-8">
+        <app-dinamic-form [inForm]="form()" [stateInForm]="stateForm()" [visiblebtn]="canCreateUser" (returnData)="saveUser($event)" (returnCancel)="redirectToIndex()"></app-dinamic-form>            
+        </div>
+    </div>
+</div>

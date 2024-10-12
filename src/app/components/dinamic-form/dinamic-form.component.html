@@ -1,0 +1,421 @@
+@if (dataInForm()) {
+
+<!-- dataForm.Orientation === Orientations.Horizontal ? 'flex-row' : 'flex-col' -->
+<form
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  class="gap-4"
+  [ngClass]="getCssClases()"
+>
+  @for (field of dataInForm().Fields; track field.Id; let indexField = $index) {
+  @if(!field.Hidden || field.Hidden === undefined) { @if (field.FieldType.Name
+  !== TypeFields.Checkbox && field.FieldType.Name !== TypeFields.MultipleToggle)
+  {
+  <mat-form-field
+    [id]="field.Code"
+    color="primary"
+    [ngClass]="field.CssClass ? field.CssClass : ''"
+  >
+    <!-- LABEL SECTION -->
+    <mat-label>{{ field.Title | transloco }}</mat-label>
+
+    <!-- INPUT SECTION -->
+    @if (field.FieldType.Name === TypeFields.Text) {
+
+    <input
+      matInput
+      [name]="field.Code"
+      [formControlName]="field.Code"
+      type="text"
+      [required]="field.IsRequired"
+      trimDirective
+      autocomplete="off"
+    >
+
+    } @else if (field.FieldType.Name === TypeFields.Password) {
+
+    <input
+      matInput
+      [name]="field.Code"
+      [formControlName]="field.Code"
+      [type]="inputTypePassword"
+      [required]="field.IsRequired"
+      autocomplete="off"
+      (focusout)="validatePassword()"
+    >
+
+    } @else if (field.FieldType.Name === TypeFields.Number) {
+
+    <input
+      matInput
+      [name]="field.Code"
+      [formControlName]="field.Code"
+      type="number"
+      [required]="field.IsRequired"
+      (keypress)="numberOnly($event)"
+      autocomplete="off"
+    />
+
+    } @else if (field.FieldType.Name === TypeFields.PhoneNumber) {
+
+    <input
+      matInput
+      [name]="field.Code"
+      [formControlName]="field.Code"
+      type="text"
+      [required]="field.IsRequired"
+      (keypress)="numberOnly($event)"
+      autocomplete="off"
+    />
+
+    } @else if (field.FieldType.Name === TypeFields.Decimal) {
+
+    <input
+      matInput
+      [name]="field.Code"
+      [formControlName]="field.Code"
+      type="number"
+      [required]="field.IsRequired"
+      (keypress)="decimalOnly($event)"
+      (input)="validateInputValue($event, field.Code)"
+      autocomplete="off"
+    />
+
+    } @else if (field.FieldType.Name === TypeFields.Textarea) {
+
+    <textarea
+      matInput
+      [name]="field.Code"
+      [formControlName]="field.Code"
+      [required]="field.IsRequired"
+      trimDirective
+      autocomplete="off"
+    ></textarea>
+
+    } @else if(field.FieldType.Name === TypeFields.Date) {
+    <input
+      matInput
+      [min]="field.DateMin"
+      [max]="field.DateMax"
+      [matDatepicker]="picker"
+      [formControlName]="field.Code"
+    />
+
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    }
+
+    <!-- <ng-container *ngIf="field.FieldType.Name === TypeFields.Autocomplete">
+                    <input matInput [matAutocomplete]="auto" [formControlName]="field.Code">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayGroupedFn.bind(this)"
+                    (optionSelected)="autocompleteSelect($event, field)" requireSelection="true">
+                    <mat-optgroup *ngFor="let optionGroup of filtered | async " [label]="optionGroup.name">
+                        <mat-option *ngFor="let option of optionGroup.options" [value]="option.clientId">
+                        <small>{{option.phoneNumber}}</small>
+                        </mat-option>
+                    </mat-optgroup>
+                    </mat-autocomplete>
+                </ng-container> -->
+
+    @if (field.FieldType.Name === TypeFields.AutocompleteSimple) {
+
+    <input
+      #inputAutocomplete
+      [id]="field.Code"
+      matInput
+      [matAutocomplete]="autoSimple"
+      [formControlName]="field.Code"
+      (input)="filter(field)"
+      (focus)="filter(field)"
+    />
+    <mat-autocomplete
+      #autoSimple="matAutocomplete"
+      requireSelection
+      (optionSelected)="autoCompleteSelectedSimple($event, field)"
+      [displayWith]="displayFn.bind(this, field)"
+    >
+      <mat-option
+        *ngIf="field.insertNewValue"
+        [value]="false"
+        userPermission
+        [permission]="field.PermissionToInsert"
+        [action]="actions.Create"
+      >
+        <mat-icon color="accent">add</mat-icon>
+        <span class="text-accent-700 font-semibold">Agregar</span>
+      </mat-option>
+      @for (option of field.OptionsFiltered; track option) {
+      <mat-option [value]="option.value">
+        {{ option.key }}
+      </mat-option>
+
+      }
+    </mat-autocomplete>
+
+    } @if (field.FieldType.Name === TypeFields.AutocompleteChips) {
+    <mat-chip-grid #chipGrid>
+      @for (selected of field.OptionsSelected; track selected; let index =
+      $index) {
+      <mat-chip-row (removed)="remove(field, index)">
+        <span class="text-xs">{{
+          returnChipLabelSelect(selected, field)
+        }}</span>
+        <button matChipRemove [attr.aria-label]="'eliminar ' + selected">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+    </mat-chip-grid>
+    <input
+      #inputAutocomplete
+      [id]="field.Code"
+      matInput
+      [matChipInputFor]="chipGrid"
+      [matAutocomplete]="autoSimple"
+      [formControlName]="field.Code"
+      (input)="filter(field)"
+      (focus)="filter(field)"
+    />
+    <mat-autocomplete
+      #autoSimple="matAutocomplete"
+      (optionSelected)="autoCompleteSelectedChips($event, field)"
+    >
+      @for (option of field.OptionsFiltered; track option) {
+      <mat-option [value]="option.value">
+        {{ option.key }}
+      </mat-option>
+      }
+    </mat-autocomplete>
+
+    } @if (field.FieldType.Name === TypeFields.Select) {
+
+    <mat-select
+      [formControlName]="field.Code"
+      (selectionChange)="changeSelectValue(field, $event)"
+      [multiple]="field.FieldType.Multiple"
+      [required]="field.IsRequired"
+    >
+      @for (opt of field.Options; track opt) {
+      <mat-option [value]="opt.key">
+        {{ opt.value }}
+      </mat-option>
+      }
+    </mat-select>
+
+    }
+    <!--
+                @if (field.FieldType.Name === TypeFields.Select) {
+                    <mat-form-field appearance="fill">
+                      <mat-label>{{ field.Title | transloco }}</mat-label>
+                      <mat-select [formControlName]="field.Code" (selectionChange)="changeSelectValue(field, $event)" [multiple]="field.FieldType.Multiple" [required]="field.IsRequired">
+                        <mat-option *ngFor="let opt of field.Options" [value]="opt.key">
+                          {{ opt.value }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="form.get(field.Code).hasError('required')">
+                        {{ 'ERRORS.REQUIRED' | transloco }}
+                      </mat-error>
+                    </mat-form-field>
+                  }-->
+
+    @if (field.Icon && (field.Code === 'password' || field.Code ===
+    'newPassword' || field.Code === 'newPasswordConfirm')) {
+    <mat-icon
+      matSuffix
+      [svgIcon]="iconActioned() ? field.IconAfter : field.Icon"
+      (click)="toggleVisibility(field)"
+      class="icon-sm"
+    ></mat-icon>
+    } @else if (field.FieldType.Name === TypeFields.AutocompleteSimple) {
+
+    <mat-icon
+      matSuffix
+      svgIcon="heroicons_outline:x-mark"
+      (click)="cleanField(field)"
+      [matTooltip]="'Borrar'"
+      class="icon-sm cursor-pointer hover:scale-110"
+    ></mat-icon>
+    }
+
+    <!-- HINT SECTION -->
+
+    @if ((field.Code === "description" || field.Code === "subject") &&
+    field.HintField) {
+    <mat-hint align="end">
+      {{ form.controls[field.Code].value?.length ?? 0 }} / {{ field.HintField }}
+    </mat-hint>
+    } @else if (field.HintField) {
+    <mat-hint align="start">
+      {{ field.HintField }}
+    </mat-hint>
+    }
+
+    <!-- ERROR SECTION -->
+    @if (form.controls[field.Code].errors?.required &&
+    form.controls[field.Code].touched) {
+    <mat-error class="text-xs"
+      >{{ field.Title | transloco }}
+      {{ "FORMS.ERRORS.REQUIRED" | transloco }}</mat-error
+    >
+    } @if (form.controls[field.Code].errors?.email &&
+    form.controls[field.Code].touched) {
+    <mat-error class="text-xs">{{
+      "FORMS.ERRORS.INVALID_EMAIL" | transloco
+    }}</mat-error>
+    } @if (form.controls[field.Code].errors?.minlength &&
+    form.controls[field.Code].touched) {
+    <mat-error class="text-xs">
+      {{
+        "FORMS.ERRORS.MINIMUM"
+          | transloco
+            : {
+                min: form.controls[field.Code].errors?.minlength.requiredLength
+              }
+      }}
+    </mat-error>
+    } @if (form.controls[field.Code].errors?.maxlength &&
+    form.controls[field.Code].touched) {
+    <mat-error class="text-xs">{{
+      "FORMS.ERRORS.MAXIMUM"
+        | transloco
+          : { min: form.controls[field.Code].errors?.maxlength.requiredLength }
+    }}</mat-error>
+    } @if (form.controls[field.Code].errors?.pattern &&
+    form.controls[field.Code].touched) {
+    <mat-error class="text-xs">{{
+      "FORMS.ERRORS.PASSWORD_PATTERN" | transloco
+    }}</mat-error>
+    } @if (form.controls[field.Code].errors?.invalidFormat &&
+    form.controls[field.Code].touched) {
+    <mat-error class="text-xs"
+      >{{ "FORMS.ERRORS.TWO_DECIMALS" | transloco }}
+    </mat-error>
+    } @if (form.controls[field.Code].errors?.noDecimal &&
+    form.controls[field.Code].touched) {
+    <mat-error class="text-xs"
+      >{{ "FORMS.ERRORS.NO_DECIMALS" | transloco }}
+    </mat-error>
+    } @if (form.controls[field.Code].errors?.min &&
+    form.controls[field.Code].touched) {
+    <mat-error class="text-xs"
+      >{{ "FORMS.ERRORS.MIN_VALUE" | transloco }}
+      {{ form.controls[field.Code].errors?.min.min }}
+    </mat-error>
+    } @if (form.controls[field.Code].hasError('incorrect') &&
+    form.controls[field.Code].touched) {
+    <mat-error class="text-xs">
+      {{ form.controls[field.Code].getError("incorrect").message }}
+      <!-- <div class="absolute top-0 right-0 bg-red-500 text-white p-2 rounded z-10">
+                    {{ form.controls[field.Code].getError('incorrect').message }}
+                    </div> -->
+    </mat-error>
+    } @if (form.controls[field.Code].hasError('noMatch') &&
+    form.controls[field.Code].touched) {
+    <mat-error class="text-xs">{{
+      "FORMS.ERRORS.NO_MATCH" | transloco
+    }}</mat-error>
+    }
+  </mat-form-field>
+  } @if (field.FieldType.Name === TypeFields.Checkbox) {
+    @if(field.Options.length > 0) {
+    <mat-label>{{ field.Title | transloco }}</mat-label>
+    <mat-hint
+      *ngIf="field.HintField"
+      class="text-xs text-primary-700"
+      align="start"
+    >
+      {{ field.HintField }}
+    </mat-hint>
+    <div class="flex flex-wrap items-start mt-2">
+      <div *ngFor="let item of field.Options">
+        <mat-checkbox
+          type="checkbox"
+          [checked]="field.Value ? true : false"
+          [value]="item.value"
+          [disabled]="!field.IsEditable"
+          class="hover:cursor-pointer"
+          (change)="onCheckboxChange($event, field)"
+        >
+          <span class="text-sm ml-2">{{ item.value }}</span>
+        </mat-checkbox>
+      </div>
+    </div>
+    } @else {
+    <div class="flex flex-wrap items-start mb-2">
+      <mat-checkbox
+        type="checkbox"
+        [checked]="field.Value ? true : false"
+        [checked]="field.Value"
+        [disabled]="!field.IsEditable"
+      >
+        <span class="text-gray-600">{{ field.Title | transloco }}</span>
+      </mat-checkbox>
+    </div>
+    } @if (form.controls[field.Code].hasError('incorrect')) {
+    <mat-error class="text-xs">
+      {{ form.controls[field.Code].getError("incorrect").message }}
+      <!-- <div class="absolute top-0 right-0 bg-red-500 text-white p-2 rounded z-10">
+                            {{ form.controls[field.Code].getError('incorrect').message }}
+                            </div> -->
+    </mat-error>
+    } 
+    
+
+  } @else if(field.FieldType.Name === TypeFields.MultipleToggle) {
+  <div
+    class="flex flex-col gap-2"
+    [ngClass]="field.CssClass ? field.CssClass : ''"
+  >
+    <mat-label>{{ field.Title }}</mat-label>
+    <div class="grid grid-flow-row">
+      @for(opt of field.Options; track opt){
+      <mat-slide-toggle (change)="multipleToggleChange($event, opt, field)"
+        >{{ opt.value }}
+        @if(opt.extraInfo){
+        <br />
+        <span class="text-xs">{{ opt.extraInfo }}</span>
+        }
+      </mat-slide-toggle>
+      }
+    </div>
+  </div>
+  } } }
+  <ng-content select="[contentAfterActions]"></ng-content>
+<div class="flex justify-end" [ngClass]="getCssBtnClases()">
+  <!-- BOTON DE CANCELAR -->
+  @if (dataInForm().CancelButton) {
+  <button
+    class="w-auto transition-transform transform hover:scale-105"
+    (click)="cancel()"
+    mat-stroked-button
+    type="button"
+  >
+    {{ dataInForm().BtnCancelText | transloco }}
+  </button>
+  }
+  <!-- BOTON DE SUBMIT -->
+  @if (dataInForm().BtnText) {
+    <button 
+    color="primary"
+    type="submit"
+    [disabled]="!form.valid || form.disabled || !visiblebtn"
+    class="transition-transform transform hover:scale-105"
+    [ngClass]="{
+      'w-full': dataInForm().BtnFull,
+      'w-auto': !dataInForm().BtnFull
+    }"
+    mat-raised-button
+  >
+    <span *ngIf="!form.disabled" style="color: white;">
+      {{ dataInForm().BtnText | transloco }}
+    </span>
+    <mat-progress-spinner *ngIf="form.disabled"
+      [diameter]="24"
+      [mode]="'indeterminate'"
+    ></mat-progress-spinner>
+  </button>
+  
+  }
+</div>
+</form>
+}

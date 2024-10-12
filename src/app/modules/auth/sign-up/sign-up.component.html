@@ -1,0 +1,35 @@
+<div id="login" class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0">
+    <div class="md:flex md:justify-end w-full bg-bpay sm:w-auto md:h-full py-8 px-4 sm:p-12 md:p-12 md:pt-20 sm:rounded-2xl md:rounded-none sm:shadow md:shadow-none">
+        <div class="flex flex-col w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
+            <!-- Logo -->
+            <div class="w-50 self-center">
+                <img src="assets/images/logo/logo devel.png">
+            </div>
+            <!-- Alert -->
+            @if(showAlert)
+            {
+                <fuse-alert
+                    class="mt-8"
+                    [appearance]="'outline'"
+                    [showIcon]="false"
+                    [type]="alert.type"
+                    [@shake]="alert.type === 'error'">
+                    {{alert.message}}
+                </fuse-alert>
+            }
+            <!-- Title -->
+            <div class="mt-8 text-3xl font-extrabold tracking-tight leading-tight">{{ 'SIGN_UP.TITLE' | transloco }}</div>
+            <div class="flex items-baseline mt-0.5 font-medium">
+                <div>{{ 'SIGN_UP.ALREADY_ACCOUNT' | transloco }}</div>
+                <a
+                    class="ml-1 text-primary-500 hover:underline"
+                    [routerLink]="['/sign-in']">{{ 'SIGN_UP.SIGN_IN' | transloco }}
+                </a>
+            </div>
+            <app-dinamic-form class="mt-8" [inForm]="form()" [stateInForm]="stateForm()"></app-dinamic-form>
+        </div>
+    </div>
+    <div id="login-intro" class="relative hidden md:flex flex-auto items-center justify-center h-full p-16 lg:px-28 overflow-hidden dark:border-l">
+       
+    </div>
+</div>

@@ -1,0 +1,11 @@
+app-data-table{
+  .clickeable:hover {
+    cursor: pointer;
+  }
+  
+  .text-start {
+    .mat-sort-header-content{
+      text-align: start!important;
+    }
+  }
+}

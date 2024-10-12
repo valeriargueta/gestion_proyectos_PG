@@ -1,0 +1,484 @@
+<div class="flex flex-col flex-auto mx-4 mb-4">
+  @if(inputData.length > 0) {
+  <!-- Header -->
+  <div
+    class="flex flex-row py-8 border-b"
+    [ngClass]="showFilters ? 'justify-between' : 'justify-end px-6'"
+  >
+    <!-- Filters -->
+    @if(showFilters) {
+    <div class="min-w-100">
+      <ng-container *ngIf="filtersReady">
+        <mat-form-field class="w-full">
+          <mat-label>{{ "TABLE.FILTER_BY_RANGE" | transloco }}</mat-label>
+          <mat-date-range-input
+            [rangePicker]="rangePicker"
+            [formGroup]="dateRange"
+            [max]="maxDate"
+            [rangeSelectionStrategy]="rangeSelection"
+          >
+            <input
+              matStartDate
+              [placeholder]="'TABLE.START_DATE_PLACEHOLDER' | transloco"
+              formControlName="start"
+            />
+            <input
+              matEndDate
+              [placeholder]="'TABLE.END_DATE_PLACEHOLDER' | transloco"
+              formControlName="end"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="rangePicker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #rangePicker>
+            <mat-date-range-picker-actions>
+              <button
+                mat-raised-button
+                matDateRangePickerCancel
+                color="primary"
+                (click)="clearDates()"
+              >
+                {{ "TABLE.CLEAR_DATES" | transloco }}
+              </button>
+              <button mat-button matDateRangePickerCancel>
+                {{ "TABLE.CANCEL" | transloco }}
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                matDateRangePickerApply
+                (click)="filterDates()"
+              >
+                {{ "TABLE.APPLY_DATES" | transloco }}
+              </button>
+            </mat-date-range-picker-actions>
+          </mat-date-range-picker>
+        </mat-form-field>
+      </ng-container>
+    </div>
+    <span class="grow"></span>
+    }
+    <!-- Search User -->
+    @if(tableType.showSearchUser) {
+    <div class="flex shrink-0 items-center mt-2 sm:mt-0 sm:ml-4">
+      <mat-form-field
+        class="fuse-mat-dense min-w-80"
+        [subscriptSizing]="'dynamic'"
+      >
+        <mat-icon
+          class="icon-size-5"
+          matPrefix
+          [svgIcon]="'heroicons_solid:magnifying-glass'"
+        ></mat-icon>
+        <input
+          matInput
+          (keyup)="searchInput($event)"
+          [autocomplete]="'off'"
+          [placeholder]="'TABLE.SEARCH_BY_NAME' | transloco"
+          #inputFilter
+        />
+      </mat-form-field>
+    </div>
+    }
+
+        <!-- Search -->
+        @if(tableType.showSearchQr) {
+          <div class="flex shrink-0 items-center mt-2 sm:mt-0 sm:ml-4">
+            <mat-form-field
+              class="fuse-mat-dense min-w-80"
+              [subscriptSizing]="'dynamic'"
+            >
+              <mat-icon
+                class="icon-size-5"
+                matPrefix
+                [svgIcon]="'heroicons_solid:magnifying-glass'"
+              ></mat-icon>
+              <input
+                matInput
+                (keyup)="searchInput($event)"
+                [autocomplete]="'off'"
+                [placeholder]="'TABLE.SEARCH_BY_QR_DESCRIPTION' | transloco"
+                #inputFilter
+              />
+            </mat-form-field>
+          </div>
+          }
+       <!-- Search button -->
+       @if(tableType.EnableSearch) {
+        <button
+          class="min-w-50 ml-4"
+          style="background-color: #035EDC"
+          mat-flat-button
+          (click)="search()"
+        >
+          <mat-icon [svgIcon]="'heroicons_solid:magnifying-glass'"></mat-icon>
+          <span class="ml-2 mr-1" style="color: white;">{{ "TABLE.SEARCH" | transloco }}</span>
+        </button>
+        }
+    <!-- Export button -->
+    @if(tableType.EnableExport) {
+    <button
+      class="min-w-50 ml-4 mt-6 bg-dark-brown"
+      mat-flat-button
+      (click)="exportTable()"
+    >
+      <mat-icon [svgIcon]="'heroicons_outline:arrow-down-on-square'"></mat-icon>
+      <span class="ml-2 mr-1">{{ "TABLE.EXPORT" | transloco }}</span>
+    </button>
+    }
+  </div>
+  <table
+    mat-table
+    class="overflow-scroll"
+    [dataSource]="dataSource"
+    matSort
+    class="text-start"
+  >
+    @for (column of tableType.Columns; track column) {
+    <ng-container [matColumnDef]="column.Code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ column.Title | transloco }}
+      </th>
+      @if(column.Code === "status") {
+      <td mat-cell *matCellDef="let element">
+        @if(element.status) {
+        <span
+          class="inline-flex items-center font-bold text-xs px-2.5 py-0.5 rounded-full tracking-wide uppercase bg-green-200 text-green-800"
+        >
+          <span class="leading-relaxed whitespace-nowrap">{{
+            "TABLE.ACTIVE" | transloco
+          }}</span>
+        </span>
+        } @else if(!element.status) {
+        <span
+          class="inline-flex items-center font-bold text-xs px-2.5 py-0.5 rounded-full tracking-wide uppercase bg-red-200 text-red-800"
+        >
+          <span class="leading-relaxed whitespace-nowrap">{{
+            "TABLE.INACTIVE" | transloco
+          }}</span>
+        </span>
+        }
+      </td>
+      } @else if(column.Code === "actions") {
+      <!-- Actions button -->
+      <!-- Actions button on menu-->
+      @if(showActions) {
+      <td mat-cell *matCellDef="let element">
+        <button [matMenuTriggerFor]="actions" mat-icon-button>
+          <mat-icon [svgIcon]="'heroicons_mini:ellipsis-vertical'"></mat-icon>
+        </button>
+        <mat-menu #actions="matMenu">
+          @for (action of column.Menu.Actions; track action) { @if(action.Code
+          === 'activateDeactivate') { @if(element.status) {
+          <!-- ESTADO ACTIVO -->
+          <button mat-menu-item (click)="actionReturn(action.Action, element)">
+            {{ "TABLE.MENU.DEACTIVATE" | transloco }}
+          </button>
+          } @else {
+          <!-- ESTADO INACTIVO -->
+          <button mat-menu-item (click)="actionReturn(action.Action, element)">
+            {{ "TABLE.MENU.ACTIVATE" | transloco }}
+          </button>
+          } } @else {
+          <button mat-menu-item (click)="actionReturn(action.Action, element)">
+            {{ action.Title | transloco }}
+          </button>
+          } }
+        </mat-menu>
+      </td>
+      } @else {
+      <!-- Actions button each like a button -->
+      <td mat-cell *matCellDef="let element">
+        @for (action of column.Menu.Actions; track action) { @if(action.Icon) {
+        <button
+          [matTooltip]="action.Title | transloco"
+          (click)="actionReturn(action.Action, element)"
+          [ngClass]="action.CssClass ? action.CssClass : ''"
+        >
+          <mat-icon
+            class="icon-size-6"
+            [ngClass]="action.CssClass ? action.CssClass : ''"
+            [svgIcon]="action.Icon"
+          ></mat-icon>
+        </button>
+        } @else {
+        <button mat-menu-item (click)="actionReturn(action.Action, element)">
+          {{ action.Title | transloco }}
+        </button>
+        } }
+      </td>
+      } } @else if(column.Code === "role") {
+      <!-- Role -->
+      <td mat-cell *matCellDef="let element">
+        @if(element.role.length > 0) { @for(rol of element.role; track rol){
+        <div>{{ rol }}</div>
+        } } @else {
+        {{ "USERS.NO_ROLE" | transloco }}
+        }
+      </td>
+      } @else if(column.Code === "logo") {
+      <!-- Logo -->
+      <td mat-cell *matCellDef="let element">
+        <img class="w-10 h-10 rounded-full" [src]="element[column.Code]" />
+      </td>
+      } @else if(clickeable && column.Code === "name") {
+      <!-- Name with link -->
+      <td mat-cell *matCellDef="let element">
+        <a
+          class="text-primary-500 clickeable underline"
+          (click)="actionClickeable(element)"
+          >{{ element[column.Code] }}
+        </a>
+      </td>
+      } @else if(column.Code === "createdAt") {
+      <!-- format date -->
+      <td mat-cell *matCellDef="let element">
+        {{ element[column.Code] }}
+      </td>
+      } @else if(column.Code === "qr") {
+      <!-- Qr with link -->
+      <td mat-cell *matCellDef="let element">
+        <a
+          class="text-primary-500 clickeable underline"
+          href="{{ element[column.Code] }}"
+          target="_blank"
+        >
+          {{ "ESTABLISHMENTS.DOWNLOAD_QR" | transloco }}</a
+        >
+      </td>
+      } @else {
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [ngClass]="column.CssClass ? column.CssClass : ''"
+      >
+        {{ element[column.Code] }}
+      </td>
+      }
+    </ng-container>
+    }
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell p-6" colspan="4">
+        {{ "TABLE.SEARCH_NO_DATA" | transloco }}
+      </td>
+    </tr>
+  </table>
+  <mat-paginator
+    #paginator
+    class="flex justify-end"
+    [length]="dataCount"
+    [pageSize]="pageSize"
+    [pageIndex]="pagination.pageIndex"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+  } @else if (inputData.length === 0) {
+  <!-- Header -->
+  <div
+    class="flex flex-row py-8 border-b"
+    [ngClass]="showFilters ? 'justify-between' : 'justify-end px-6'"
+  >
+    <!-- Filters -->
+    @if(showFilters) {
+    <div class="min-w-100">
+      <mat-form-field class="w-full">
+        <mat-label>{{ "TABLE.FILTER_BY_RANGE" | transloco }}</mat-label>
+        <mat-date-range-input
+          [rangePicker]="rangePicker"
+          [formGroup]="dateRange"
+          [max]="maxDate"
+        >
+          <input
+            matStartDate
+            [placeholder]="'TABLE.START_DATE_PLACEHOLDER' | transloco"
+            formControlName="start"
+          />
+          <input
+            matEndDate
+            [placeholder]="'TABLE.END_DATE_PLACEHOLDER' | transloco"
+            formControlName="end"
+          />
+        </mat-date-range-input>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="rangePicker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker>
+          <mat-date-range-picker-actions>
+            <button
+              mat-raised-button
+              matDateRangePickerCancel
+              color="accent"
+              (click)="clearDates()"
+            >
+              {{ "TABLE.CLEAR_DATES" | transloco }}
+            </button>
+            <button mat-button matDateRangePickerCancel>
+              {{ "TABLE.CANCEL" | transloco }}
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              matDateRangePickerApply
+              (click)="filterDates()"
+            >
+              {{ "TABLE.APPLY_DATES" | transloco }}
+            </button>
+          </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <span class="grow"></span>
+    }
+  </div>
+  <table
+    mat-table
+    class="overflow-scroll"
+    [dataSource]="dataSource"
+    matSort
+    class="text-start"
+  >
+    @for (column of tableType.Columns; track column) {
+    <ng-container [matColumnDef]="column.Code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ column.Title | transloco }}
+      </th>
+      @if(column.Code === "status") {
+      <td mat-cell *matCellDef="let element">
+        @if(element.status) {
+        <span
+          class="inline-flex items-center font-bold text-xs px-2.5 py-0.5 rounded-full tracking-wide uppercase bg-green-200 text-green-800"
+        >
+          <span class="leading-relaxed whitespace-nowrap">{{
+            "TABLE.ACTIVE" | transloco
+          }}</span>
+        </span>
+        } @else if(!element.status) {
+        <span
+          class="inline-flex items-center font-bold text-xs px-2.5 py-0.5 rounded-full tracking-wide uppercase bg-red-200 text-red-800"
+        >
+          <span class="leading-relaxed whitespace-nowrap">{{
+            "TABLE.INACTIVE" | transloco
+          }}</span>
+        </span>
+        }
+      </td>
+      } @else if(column.Code === "actions") {
+      <!-- Actions button -->
+      <!-- Actions button on menu-->
+      @if(showActions) {
+      <td mat-cell *matCellDef="let element">
+        <button [matMenuTriggerFor]="actions" mat-icon-button>
+          <mat-icon [svgIcon]="'heroicons_mini:ellipsis-vertical'"></mat-icon>
+        </button>
+        <mat-menu #actions="matMenu">
+          @for (action of column.Menu.Actions; track action) { @if(action.Code
+          === 'activateDeactivate') { @if(element.status) {
+          <!-- ESTADO ACTIVO -->
+          <button mat-menu-item (click)="actionReturn(action.Action, element)">
+            {{ "TABLE.MENU.DEACTIVATE" | transloco }}
+          </button>
+          } @else {
+          <!-- ESTADO INACTIVO -->
+          <button mat-menu-item (click)="actionReturn(action.Action, element)">
+            {{ "TABLE.MENU.ACTIVATE" | transloco }}
+          </button>
+          } } @else {
+          <button mat-menu-item (click)="actionReturn(action.Action, element)">
+            {{ action.Title | transloco }}
+          </button>
+          } }
+        </mat-menu>
+      </td>
+      } @else {
+      <!-- Actions button each like a button -->
+      <td mat-cell *matCellDef="let element">
+        @for (action of column.Menu.Actions; track action) { @if(action.Icon) {
+        <button
+          [matTooltip]="action.Title | transloco"
+          (click)="actionReturn(action.Action, element)"
+          [ngClass]="action.CssClass ? action.CssClass : ''"
+        >
+          <mat-icon
+            class="icon-size-6"
+            [ngClass]="action.CssClass ? action.CssClass : ''"
+            [svgIcon]="action.Icon"
+          ></mat-icon>
+        </button>
+        } @else {
+        <button mat-menu-item (click)="actionReturn(action.Action, element)">
+          {{ action.Title | transloco }}
+        </button>
+        } }
+      </td>
+      } } @else if(column.Code === "role") {
+      <!-- Role -->
+      <td mat-cell *matCellDef="let element">
+        @if(element.role.length > 0) { @for(rol of element.role; track rol){
+        <div>{{ rol }}</div>
+        } } @else {
+        {{ "USERS.NO_ROLE" | transloco }}
+        }
+      </td>
+      } @else if(column.Code === "logo") {
+      <!-- Logo -->
+      <td mat-cell *matCellDef="let element">
+        <img class="w-10 h-10 rounded-full" [src]="element[column.Code]" />
+      </td>
+      } @else if(clickeable && column.Code === "name") {
+      <!-- Name with link -->
+      <td mat-cell *matCellDef="let element">
+        <a
+          class="text-primary-500 clickeable underline"
+          (click)="actionClickeable(element)"
+          >{{ element[column.Code] }}
+        </a>
+      </td>
+      } @else if(column.Code === "createdAt") {
+      <!-- format date -->
+      <td mat-cell *matCellDef="let element">
+        {{ element[column.Code] | date : "dd/MM/yyyy hh:mm a" }}
+      </td>
+      } @else if(column.Code === "qr") {
+      <!-- Qr with link -->
+      <td mat-cell *matCellDef="let element">
+        <a
+          class="text-primary-500 clickeable underline"
+          href="{{ element[column.Code] }}"
+          target="_blank"
+        >
+          {{ "ESTABLISHMENTS.DOWNLOAD_QR" | transloco }}</a
+        >
+      </td>
+      } @else {
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [ngClass]="column.CssClass ? column.CssClass : ''"
+      >
+        {{ element[column.Code] }}
+      </td>
+      }
+    </ng-container>
+    }
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell p-6" colspan="4">
+        {{ "TABLE.SEARCH_NO_DATA" | transloco }}
+      </td>
+    </tr>
+  </table>
+  }
+</div>

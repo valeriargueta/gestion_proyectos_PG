@@ -1,0 +1,36 @@
+<div class="flex flex-col flex-auto">
+  <!-- Header -->
+  <div
+    class="flex flex-row sm:flex-row items-start sm:items-center sm:justify-between p-6 sm:py-12 md:px-8 border-b bg-card dark:bg-transparent"
+  >
+    <!-- Title -->
+    <div>
+      <div class="text-4xl font-extrabold tracking-tight leading-none">
+        {{ "USERS.TITLE" | transloco }}
+      </div>
+    </div>
+    <!-- Actions -->
+    <div class="mt-4 sm:mt-0">
+      <!-- Add user -->
+       @if (canCreateUser) {  <button mat-flat-button color="primary" [routerLink]="['/users/add']">
+        <mat-icon [svgIcon]="'heroicons_outline:plus'" style="color: white;"></mat-icon>
+        <span class="ml-2 mr-1" style="color: white;">{{ "USERS.NEW_USER" | transloco }}</span>
+      </button>}
+    
+    </div>
+  </div>
+  <div class="mt-6 mx-10 bg-card rounded-2xl shadow">
+    <app-data-table
+      [tableType]="table"
+      [showActions]="true"
+      [isDynamic]="true"
+      [dataCount]="dataCount"
+      [pageSizeOptions]="[10, 25, 50]"
+      [pageSize]="10"
+      (action)="activateDeactivateUser($event)"
+      (editAction)="editUser($event)"
+      (paginationEvent)="paginationHandler($event)"
+      (valueFilteredTable)="userFiltered($event)"
+    ></app-data-table>
+  </div>
+</div>

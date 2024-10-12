@@ -1,0 +1,16 @@
+<!-- Alert -->
+@if(showAlert)
+{
+    <fuse-alert
+        class="mt-2 mb-8"
+        [appearance]="'outline'"
+        [showIcon]="false"
+        [type]="alert.type"
+        [@shake]="alert.type === 'error'">
+        {{alert.message}}
+    </fuse-alert>
+}
+
+<div class="mt-8 w-full">
+    <app-dinamic-form [inForm]="form()" [stateInForm]="stateForm()" (returnData)="updateAccount($event)" class="w-1/2"></app-dinamic-form>
+</div>
